@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cookies SMP | الموقع الرسمي</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Pixel Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Tajawal:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        pixel: {
+                            bg: '#181825',
+                            card: '#1e1e2e',
+                            border: '#313244',
+                            cookie: '#e5a962',
+                            darkCookie: '#965b26',
+                            highlight: '#f9e2af',
+                            text: '#cdd6f4',
+                            subtext: '#a6adc8',
+                            green: '#a6e3a1',
+                            red: '#f38ba8'
+                        }
+                    },
+                    fontFamily: {
+                        pixel: ['"Press Start 2P"', 'cursive'],
+                        sans: ['Tajawal', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            font-family: 'Tajawal', sans-serif;
+            background-color: #181825;
+            color: #cdd6f4;
+            background-image: 
+                radial-gradient(#313244 1px, transparent 1px),
+                radial-gradient(#313244 1px, #181825 1px);
+            background-size: 40px 40px;
+            background-position: 0 0, 20px 20px;
+        }
+
+        /* Pixel Art Border & Button Effects */
+        .pixel-corners {
+            clip-path: polygon(
+                0 8px, 8px 8px, 8px 0,
+                calc(100% - 8px) 0, calc(100% - 8px) 8px, 100% 8px,
+                100% calc(100% - 8px), calc(100% - 8px) calc(100% - 8px), calc(100% - 8px) 100%,
+                8px 100%, 8px calc(100% - 8px), 0 calc(100% - 8px)
+            );
+        }
+
+        .pixel-btn-shadow {
+            box-shadow: inset -4px -4px 0px 0px rgba(0,0,0,0.3), inset 4px 4px 0px 0px rgba(255,255,255,0.15);
+        }
+
+        .pixel-btn-shadow:active {
+            box-shadow: inset 4px 4px 0px 0px rgba(0,0,0,0.4);
+            transform: translateY(2px);
+        }
+
+        /* Floating Cookie Animation */
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+        .floating-cookie {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Pixel Glow Effect */
+        .pixel-glow {
+            text-shadow: 0 0 10px rgba(229, 169, 98, 0.5);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #181825;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #965b26;
+            border-radius: 0px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #e5a962;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-pixel-cookie selection:text-pixel-bg overflow-x-hidden">
+
+    <!-- Top Navigation Header -->
+    <header class="w-full bg-pixel-card/90 backdrop-blur border-b-4 border-pixel-border sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
+            <!-- Logo Section -->
+            <div class="flex items-center space-x-3 space-x-reverse cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                <div class="w-10 h-10 bg-pixel-cookie rounded flex items-center justify-center text-pixel-bg text-xl font-bold floating-cookie border-2 border-pixel-darkCookie">
+                    🍪
+                </div>
+                <div>
+                    <span class="font-pixel text-xs md:text-sm text-pixel-cookie block">COOKIES SMP</span>
+                    <span class="text-xs text-pixel-subtext hidden sm:block">سيرفر ماين كرافت هادئ ولطيف</span>
+                </div>
+            </div>
+
+            <!-- Server Status & Action Buttons -->
+            <div class="flex items-center gap-3">
+                <div class="bg-pixel-bg border-2 border-pixel-border px-3 py-1.5 rounded-none flex items-center space-x-2 space-x-reverse text-sm">
+                    <span class="w-2.5 h-2.5 rounded-full bg-pixel-green animate-pulse"></span>
+                    <span class="font-bold text-pixel-green text-xs md:text-sm">متصل 🟢</span>
+                </div>
+                <a href="#live-map" class="hidden sm:flex bg-pixel-bg hover:bg-pixel-border text-pixel-cookie font-bold px-3 py-1.5 text-xs transition border-2 border-pixel-cookie items-center gap-1.5">
+                    <i class="fa-solid fa-map"></i>
+                    <span>الخريطة</span>
+                </a>
+                <a href="#join" class="bg-pixel-cookie hover:bg-pixel-highlight text-pixel-bg font-bold px-4 py-1.5 text-sm transition pixel-btn-shadow border-2 border-pixel-darkCookie">
+                    انضم الآن
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-5xl mx-auto px-4 py-8 flex-grow space-y-16">
+
+        <!-- Hero Section -->
+        <section class="text-center space-y-6 pt-6">
+            <div class="inline-block bg-pixel-card border-2 border-pixel-cookie px-4 py-1 text-pixel-cookie font-pixel text-xs tracking-wider mb-2">
+                🎮 ATERNOS MINECRAFT SERVER
+            </div>
+            
+            <h1 class="text-3xl sm:text-5xl font-extrabold text-pixel-text leading-tight">
+                مرحباً بك في عالم <br class="sm:hidden">
+                <span class="text-pixel-cookie font-pixel text-2xl sm:text-4xl block sm:inline mt-2 pixel-glow">Cookies SMP</span>
+            </h1>
+
+            <p class="text-pixel-subtext max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
+                مجتمع هادئ وصديق للجميع في ماين كرافت! ابني، استكشف، وكون صداقات جديدة في سيرفر ممتع يدعم لاعبي <span class="text-pixel-highlight font-semibold">Java</span> و <span class="text-pixel-highlight font-semibold">Bedrock</span>.
+            </p>
+
+            <!-- Quick Copy Hero Component -->
+            <div class="pt-4 max-w-xl mx-auto">
+                <div class="bg-pixel-card border-4 border-pixel-border p-4 sm:p-6 space-y-4 shadow-2xl relative">
+                    <div class="text-xs text-pixel-subtext font-pixel tracking-wider">عنوان السيرفر (SERVER IP)</div>
+                    
+                    <div class="flex flex-col sm:flex-row gap-2 justify-center items-center">
+                        <div class="bg-pixel-bg border-2 border-pixel-border px-4 py-3 rounded w-full text-center font-mono text-pixel-cookie text-sm sm:text-base font-bold select-all">
+                            cookies_smp1.aternos.me:55910
+                        </div>
+                        <button onclick="copyFullAddress()" class="w-full sm:w-auto bg-pixel-cookie hover:bg-pixel-highlight text-pixel-bg font-bold px-6 py-3 transition flex items-center justify-center gap-2 pixel-btn-shadow border-2 border-pixel-darkCookie whitespace-nowrap">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>نسخ الكل</span>
+                        </button>
+                    </div>
+
+                    <div class="flex justify-between items-center text-xs text-pixel-subtext pt-2 border-t border-pixel-border">
+                        <span><i class="fa-solid fa-gamepad text-pixel-cookie ml-1"></i> الجافا والبيدروك معاً</span>
+                        <span><i class="fa-solid fa-signal text-pixel-green ml-1"></i> المنفذ: 55910</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Connection Details Card (Java / Bedrock Split) -->
+        <section id="connect-info" class="space-y-6">
+            <h2 class="text-2xl font-bold text-center text-pixel-highlight flex items-center justify-center gap-2">
+                <span>⚔️</span> بيانات الاتصال المباشرة
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Java Edition Card -->
+                <div class="bg-pixel-card border-4 border-pixel-border p-6 flex flex-col justify-between space-y-4 hover:border-pixel-cookie transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-pixel-text flex items-center gap-2">
+                                <i class="fa-desktop text-pixel-cookie"></i> لاعبو الجافا (Java 1.21)
+                            </h3>
+                            <span class="text-xs bg-pixel-bg px-2 py-1 text-pixel-subtext border border-pixel-border">PC</span>
+                        </div>
+                        <p class="text-sm text-pixel-subtext mb-4">
+                            استخدم العنوان المباشر للانضمام عبر ماين كرافت الجافا الإصدار 1.21.
+                        </p>
+                        
+                        <div class="space-y-2">
+                            <label class="text-xs text-pixel-subtext">العنوان (Address)</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" readonly value="cookies_smp1.aternos.me" class="bg-pixel-bg border border-pixel-border px-3 py-2 text-sm text-pixel-cookie w-full font-mono rounded-none focus:outline-none">
+                                <button onclick="copyText('cookies_smp1.aternos.me', 'تم نسخ الـ IP!')" class="bg-pixel-border hover:bg-pixel-cookie hover:text-pixel-bg text-pixel-text px-3 py-2 text-sm transition">
+                                    <i class="fa-regular fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button onclick="copyText('cookies_smp1.aternos.me', 'تم نسخ الـ IP!')" class="w-full bg-pixel-bg hover:bg-pixel-border text-pixel-text border border-pixel-cookie py-2 text-sm font-bold transition">
+                        نسخ الـ IP
+                    </button>
+                </div>
+
+                <!-- Bedrock Edition Card -->
+                <div class="bg-pixel-card border-4 border-pixel-border p-6 flex flex-col justify-between space-y-4 hover:border-pixel-cookie transition">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <h3 class="text-xl font-bold text-pixel-text flex items-center gap-2">
+                                <i class="fa-mobile-screen text-pixel-cookie"></i> لاعبو البيدروك (Bedrock)
+                            </h3>
+                            <span class="text-xs bg-pixel-bg px-2 py-1 text-pixel-subtext border border-pixel-border">Mobile / Console</span>
+                        </div>
+                        <p class="text-sm text-pixel-subtext mb-4">
+                            يتطلب إدخال عنوان IP والمنفذ المخصص (Port) للانضمام عبر الجوال والأجهزة الذكية.
+                        </p>
+                        
+                        <div class="space-y-3">
+                            <div>
+                                <label class="text-xs text-pixel-subtext">العنوان (IP Address)</label>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <input type="text" readonly value="cookies_smp1.aternos.me" class="bg-pixel-bg border border-pixel-border px-3 py-2 text-sm text-pixel-cookie w-full font-mono focus:outline-none">
+                                    <button onclick="copyText('cookies_smp1.aternos.me', 'تم نسخ الـ IP!')" class="bg-pixel-border hover:bg-pixel-cookie hover:text-pixel-bg text-pixel-text px-3 py-2 text-sm transition">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div>
+                                <label class="text-xs text-pixel-subtext">المنفذ (Port)</label>
+                                <div class="flex items-center gap-2 mt-1">
+                                    <input type="text" readonly value="55910" class="bg-pixel-bg border border-pixel-border px-3 py-2 text-sm text-pixel-green w-full font-mono font-bold focus:outline-none">
+                                    <button onclick="copyText('55910', 'تم نسخ الـ Port!')" class="bg-pixel-border hover:bg-pixel-cookie hover:text-pixel-bg text-pixel-text px-3 py-2 text-sm transition">
+                                        <i class="fa-regular fa-copy"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-2">
+                        <button onclick="copyText('cookies_smp1.aternos.me', 'تم نسخ الـ IP!')" class="bg-pixel-bg hover:bg-pixel-border text-pixel-text border border-pixel-border py-2 text-xs font-bold transition">
+                            نسخ الـ IP
+                        </button>
+                        <button onclick="copyText('55910', 'تم نسخ الـ Port!')" class="bg-pixel-cookie text-pixel-bg font-bold py-2 text-xs transition border border-pixel-darkCookie">
+                            نسخ الـ Port
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Live Dynmap / Server Map Section -->
+        <section id="live-map" class="space-y-6">
+            <div class="text-center space-y-2">
+                <h2 class="text-2xl font-bold text-pixel-highlight flex items-center justify-center gap-2">
+                    <span>🗺️</span> الخريطة المباشرة (Live Map)
+                </h2>
+                <p class="text-sm text-pixel-subtext">
+                    شاهد عالم السيرفر، البناء، ومواقع اللاعبين بشكل مباشر من متصفحك!
+                </p>
+            </div>
+
+            <div class="bg-pixel-card border-4 border-pixel-border p-4 sm:p-6 space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between items-center gap-3 bg-pixel-bg p-3 border border-pixel-border">
+                    <div class="flex items-center gap-2 text-sm text-pixel-text">
+                        <span class="w-2.5 h-2.5 rounded-full bg-pixel-green animate-ping"></span>
+                        <span>رابط الخريطة المباشرة: <code class="text-pixel-cookie font-mono">http://cookies_smp1.aternos.me</code></span>
+                    </div>
+                    <a href="http://cookies_smp1.aternos.me" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto bg-pixel-cookie hover:bg-pixel-highlight text-pixel-bg font-bold px-4 py-2 text-xs transition flex items-center justify-center gap-2 pixel-btn-shadow border border-pixel-darkCookie">
+                        <i class="fa-solid fa-up-right-from-square"></i>
+                        <span>فتح الخريطة في تبويب جديد</span>
+                    </a>
+                </div>
+
+                <!-- Live Map Iframe Box -->
+                <div class="relative w-full h-[450px] bg-pixel-bg border-2 border-pixel-border overflow-hidden">
+                    <iframe 
+                        src="http://cookies_smp1.aternos.me" 
+                        title="Cookies SMP Live Map" 
+                        class="w-full h-full border-0"
+                        loading="lazy">
+                    </iframe>
+                    <div class="absolute bottom-2 left-2 right-2 bg-pixel-card/90 backdrop-blur border border-pixel-border px-3 py-1.5 text-xs text-pixel-subtext text-center sm:text-right">
+                        ملاحظة: إذا لم تظهر الخريطة داخل المربع، يرجى الضغط على زر "فتح الخريطة في تبويب جديد".
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Features Grid (مميزات السيرفر) -->
+        <section class="space-y-6">
+            <h2 class="text-2xl font-bold text-center text-pixel-highlight flex items-center justify-center gap-2">
+                <span>✨</span> مميزات Cookies SMP
+            </h2>
+
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <!-- Feature 1: Crossplay -->
+                <div class="bg-pixel-card border-2 border-pixel-border p-5 text-center space-y-3 hover:-translate-y-1 transition duration-200">
+                    <div class="w-12 h-12 bg-pixel-bg border border-pixel-cookie rounded-none mx-auto flex items-center justify-center text-2xl text-pixel-cookie">
+                        🌐
+                    </div>
+                    <h3 class="font-bold text-pixel-text">دعم Crossplay</h3>
+                    <p class="text-xs text-pixel-subtext leading-relaxed">
+                        العب مع أصدقائك سواء من الجافا (الكمبيوتر) أو البيدروك (الجوال والأجهزة اللوحية).
+                    </p>
+                </div>
+
+                <!-- Feature 2: Live Map Tracking -->
+                <div class="bg-pixel-card border-2 border-pixel-border p-5 text-center space-y-3 hover:-translate-y-1 transition duration-200">
+                    <div class="w-12 h-12 bg-pixel-bg border border-pixel-cookie rounded-none mx-auto flex items-center justify-center text-2xl text-pixel-cookie">
+                        🗺️
+                    </div>
+                    <h3 class="font-bold text-pixel-text">تتبع مباشر بالخريطة</h3>
+                    <p class="text-xs text-pixel-subtext leading-relaxed">
+                        تتبع عالمك وتصفح مواقع اللاعبين والقرى والمشاريع بشكل حي ومباشر.
+                    </p>
+                </div>
+
+                <!-- Feature 3: Dynamic Economy & Trading -->
+                <div class="bg-pixel-card border-2 border-pixel-border p-5 text-center space-y-3 hover:-translate-y-1 transition duration-200">
+                    <div class="w-12 h-12 bg-pixel-bg border border-pixel-cookie rounded-none mx-auto flex items-center justify-center text-2xl text-pixel-cookie">
+                        💰
+                    </div>
+                    <h3 class="font-bold text-pixel-text">اقتصاد وتجارة</h3>
+                    <p class="text-xs text-pixel-subtext leading-relaxed">
+                        نظام اقتصادي متكامل لتداول الموارد وتأسيس المتاجر والتبادل بين اللاعبين.
+                    </p>
+                </div>
+
+                <!-- Feature 4: Events & Community -->
+                <div class="bg-pixel-card border-2 border-pixel-border p-5 text-center space-y-3 hover:-translate-y-1 transition duration-200">
+                    <div class="w-12 h-12 bg-pixel-bg border border-pixel-cookie rounded-none mx-auto flex items-center justify-center text-2xl text-pixel-cookie">
+                        🎉
+                    </div>
+                    <h3 class="font-bold text-pixel-text">فعاليات ومجتمع</h3>
+                    <p class="text-xs text-pixel-subtext leading-relaxed">
+                        مسابقات ممتعة، تحديات للبناء والمغامرة، ومجتمع متفاعل ومرحب بالجميع.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Rules Section (قوانين السيرفر) -->
+        <section class="bg-pixel-card border-4 border-pixel-border p-6 sm:p-8 space-y-6">
+            <div class="flex items-center gap-3 border-b-2 border-pixel-border pb-4">
+                <span class="text-3xl">📜</span>
+                <div>
+                    <h2 class="text-xl font-bold text-pixel-text">قوانين السيرفر</h2>
+                    <p class="text-xs text-pixel-subtext">يرجى الالتزام بالقوانين التالية لضمان تجربة عادلة وممتعة للجميع</p>
+                </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                <div class="flex items-start gap-3 bg-pixel-bg p-3 border border-pixel-border">
+                    <span class="text-pixel-cookie font-pixel text-xs">01</span>
+                    <span class="text-pixel-text">الاحترام المتبادل وعدم الإساءة أو السب في المحادثات العامة.</span>
+                </div>
+                <div class="flex items-start gap-3 bg-pixel-bg p-3 border border-pixel-border">
+                    <span class="text-pixel-cookie font-pixel text-xs">02</span>
+                    <span class="text-pixel-text">يمنع منعاً باتاً استخدام مودات الغش (Hacks / Cheats / X-Ray).</span>
+                </div>
+                <div class="flex items-start gap-3 bg-pixel-bg p-3 border border-pixel-border">
+                    <span class="text-pixel-cookie font-pixel text-xs">03</span>
+                    <span class="text-pixel-text">عدم سرقة ممتلكات اللاعبين أو تخريب بيئة السيرفر (Griefing).</span>
+                </div>
+                <div class="flex items-start gap-3 bg-pixel-bg p-3 border border-pixel-border">
+                    <span class="text-pixel-cookie font-pixel text-xs">04</span>
+                    <span class="text-pixel-text">الحفاظ على الروح الرياضية ومساعدة اللاعبين الجدد!</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Step-by-Step Join Guide -->
+        <section id="join" class="space-y-6">
+            <h2 class="text-2xl font-bold text-center text-pixel-highlight flex items-center justify-center gap-2">
+                <span>🎮</span> طريقة الانضمام للسيرفر
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-6">
+                <!-- Java Guide -->
+                <div class="bg-pixel-card border-2 border-pixel-border p-5 space-y-3">
+                    <h3 class="font-bold text-pixel-cookie text-lg border-b border-pixel-border pb-2 flex items-center justify-between">
+                        <span>إصدار الجافا (Java Edition)</span>
+                        <span class="text-xs font-mono bg-pixel-bg px-2 py-0.5 text-pixel-green border border-pixel-border">v1.21</span>
+                    </h3>
+                    <ol class="space-y-2 text-sm text-pixel-subtext list-decimal list-inside leading-relaxed">
+                        <li>شغل لعبة ماين كرافت (إصدار 1.21).</li>
+                        <li>اختر خيار <span class="text-pixel-text font-semibold">Multiplayer</span> من القائمة.</li>
+                        <li>اضغط على زر <span class="text-pixel-text font-semibold">Add Server</span>.</li>
+                        <li>ادخل العنوان: <code class="text-pixel-cookie font-mono select-all">cookies_smp1.aternos.me</code></li>
+                        <li>اضغط <span class="text-pixel-text font-semibold">Done</span> وابدأ مغامرتك!</li>
+                    </ol>
+                </div>
+
+                <!-- Bedrock Guide -->
+                <div class="bg-pixel-card border-2 border-pixel-border p-5 space-y-3">
+                    <h3 class="font-bold text-pixel-cookie text-lg border-b border-pixel-border pb-2 flex items-center justify-between">
+                        <span>إصدار البيدروك (Bedrock / Mobile)</span>
+                        <span class="text-xs font-mono bg-pixel-bg px-2 py-0.5 text-pixel-cookie border border-pixel-border">Port: 55910</span>
+                    </h3>
+                    <ol class="space-y-2 text-sm text-pixel-subtext list-decimal list-inside leading-relaxed">
+                        <li>افتح ماين كرافت على الجوال أو الجهاز اللوحي.</li>
+                        <li>ادخل إلى تبويب <span class="text-pixel-text font-semibold">Servers</span> ثم اضغط <span class="text-pixel-text font-semibold">Add Server</span>.</li>
+                        <li>اسم السيرفر: <code class="text-pixel-cookie font-mono">Cookies SMP</code></li>
+                        <li>عنوان السيرفر (IP): <code class="text-pixel-cookie font-mono select-all">cookies_smp1.aternos.me</code></li>
+                        <li>المنفذ (Port): <code class="text-pixel-green font-mono font-bold select-all">55910</code> ثم احفظ وانضم!</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full bg-pixel-card border-t-4 border-pixel-border mt-12 py-8 text-center space-y-4">
+        <div class="flex items-center justify-center space-x-2 space-x-reverse">
+            <span class="text-2xl">🍪</span>
+            <span class="font-pixel text-pixel-cookie text-sm">Cookies SMP Server</span>
+        </div>
+        <p class="text-xs text-pixel-subtext max-w-md mx-auto px-4">
+            سيرفر ماين كرافت مجتمعي غير رسمي. جميع الحقوق محفوظة للاعبين.
+        </p>
+        <div class="text-xs text-pixel-border pt-2">
+            تم التصميم بلغة بيكسل هادئة ومريحة للعين ☕
+        </div>
+    </footer>
+
+    <!-- Toast Notification (Popup when copying) -->
+    <div id="toast" class="fixed bottom-5 right-5 bg-pixel-cookie text-pixel-bg font-bold px-4 py-3 border-2 border-pixel-darkCookie shadow-2xl flex items-center gap-2 transform translate-y-20 opacity-0 transition-all duration-300 z-50 pointer-events-none">
+        <i class="fa-solid fa-circle-check"></i>
+        <span id="toast-message">تم النسخ بنجاح!</span>
+    </div>
+
+    <!-- Interactive Script -->
+    <script>
+        // Copy helper for text fallback
+        function copyText(text, customMessage) {
+            const tempInput = document.createElement("input");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            showToast(customMessage || "تم النسخ بنجاح!");
+        }
+
+        // Copy combined full IP & Port
+        function copyFullAddress() {
+            copyText("cookies_smp1.aternos.me:55910", "تم نسخ الـ IP والـ Port بنجاح! 🍪");
+        }
+
+        // Show toast notification
+        function showToast(message) {
+            const toast = document.getElementById("toast");
+            const toastMessage = document.getElementById("toast-message");
+            
+            toastMessage.textContent = message;
+            toast.classList.remove("translate-y-20", "opacity-0");
+            toast.classList.add("translate-y-0", "opacity-100");
+
+            setTimeout(() => {
+                toast.classList.remove("translate-y-0", "opacity-100");
+                toast.classList.add("translate-y-20", "opacity-0");
+            }, 2500);
+        }
+    </script>
+</body>
+</html>
